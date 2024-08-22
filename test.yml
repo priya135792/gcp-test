@@ -34,7 +34,7 @@
 
     - name: Check if credentials file exists
       stat:
-        path: /var/your-repo/plated-planet-427716-u5-0ec76f30aad5.json
+        path: /var/your-repo/plated-planet-427716-u5-14a35e5f742f.json 
       register: credentials_file
 
     - name: Fail if credentials file not found
