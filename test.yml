@@ -10,7 +10,7 @@
 
     - name: Clone the GitHub repository
       git:
-        repo: 'https://github.com/your-repo/your-repo.git'
+        repo: 'https://github.com/priya135792/gcp-test.git'
         dest: /tmp/your-repo
         version: 'main'  # or the branch you need
       become: yes
