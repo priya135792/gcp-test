@@ -3,7 +3,7 @@
   hosts: localhost
   tasks:
     - name: Run script1.py
-      command: /usr/bin/python3 ../enable.py
+      command: /usr/bin/python3 enable.py
       register: result_script1
 
     - name: Debug output of script1
@@ -11,7 +11,7 @@
         msg: "{{ result_script1.stdout }}"
 
     - name: Run script2.py
-      command: /usr/bin/python3 ../disable.py
+      command: /usr/bin/python3 disable.py
       register: result_script2
 
     - name: Debug output of script2
