@@ -1,19 +1,28 @@
 ---
-- name: Run Python scripts
-  hosts: localhost
+- name: Run Python scripts with virtual environment
+  hosts: all
   tasks:
-    - name: Run script1.py
-      command: /usr/bin/python3 enable.py
+    - name: Install python3-venv
+      apt:
+        name: python3-venv
+        state: present
+      become: yes
+
+    - name: Create virtual environment
+      command: python3 -m venv /tmp/venv
+      become: yes
+
+    - name: Install Google Cloud Monitoring package
+      pip:
+        name: google-cloud-monitoring
+        virtualenv: /tmp/venv
+        state: present
+      become: yes
+
+    - name: Run enable.py
+      command: /tmp/venv/bin/python enable.py
       register: result_script1
 
-    - name: Debug output of script1
+    - name: Debug output of enable.py
       debug:
         msg: "{{ result_script1.stdout }}"
-
-    - name: Run script2.py
-      command: /usr/bin/python3 disable.py
-      register: result_script2
-
-    - name: Debug output of script2
-      debug:
-        msg: "{{ result_script2.stdout }}"
