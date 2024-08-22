@@ -1,6 +1,6 @@
 ---
 - name: Run Python scripts
-  hosts: your_target_hosts
+  hosts: 173.255.116.235
   tasks:
     - name: Run script1.py
       command: /usr/bin/python3 ../enable.py
