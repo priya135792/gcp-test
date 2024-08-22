@@ -1,7 +1,20 @@
 ---
-- name: Run Python scripts with virtual environment
+- name: Run Python scripts with repository from GitHub
   hosts: all
   tasks:
+    - name: Install git
+      apt:
+        name: git
+        state: present
+      become: yes
+
+    - name: Clone the GitHub repository
+      git:
+        repo: 'https://github.com/your-repo/your-repo.git'
+        dest: /tmp/your-repo
+        version: 'main'  # or the branch you need
+      become: yes
+
     - name: Install python3-venv
       apt:
         name: python3-venv
@@ -20,7 +33,7 @@
       become: yes
 
     - name: Run enable.py
-      command: /tmp/venv/bin/python enable.py
+      command: /tmp/venv/bin/python /tmp/your-repo/enable.py
       register: result_script1
 
     - name: Debug output of enable.py
