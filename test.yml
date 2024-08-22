@@ -1,0 +1,19 @@
+---
+- name: Run Python scripts
+  hosts: your_target_hosts
+  tasks:
+    - name: Run script1.py
+      command: /usr/bin/python3 ../enable.py
+      register: result_script1
+
+    - name: Debug output of script1
+      debug:
+        msg: "{{ result_script1.stdout }}"
+
+    - name: Run script2.py
+      command: /usr/bin/python3 ../disable.py
+      register: result_script2
+
+    - name: Debug output of script2
+      debug:
+        msg: "{{ result_script2.stdout }}"
