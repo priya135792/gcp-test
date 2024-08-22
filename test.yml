@@ -34,9 +34,10 @@
 
     - name: Write Google Cloud credentials to file
       copy:
+        remote_src: yes
         src: /tmp/your-repo/gcp-test/plated-planet-427716-u5-0ec76f30aad5.json
         dest: /tmp/service-account-key.json
-        mode: '0600'
+        mode: '0777'
       become: yes
 
     - name: Set GOOGLE_APPLICATION_CREDENTIALS environment variable
