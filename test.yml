@@ -34,7 +34,7 @@
 
     - name: Write Google Cloud credentials to file
       copy:
-        src: /tmp/your-repo/plated-planet-427716-u5-0ec76f30aad5.json
+        src: /tmp/your-repo/gcp-test/plated-planet-427716-u5-0ec76f30aad5.json
         dest: /tmp/service-account-key.json
         mode: '0600'
       become: yes
@@ -47,7 +47,7 @@
       become: yes
 
     - name: Run enable.py
-      command: /tmp/venv/bin/python /tmp/your-repo/enable.py
+      command: /tmp/venv/bin/python /tmp/your-repo/gcp-test/enable.py
       register: result_script1
 
     - name: Debug output of enable.py
