@@ -1,6 +1,6 @@
 ---
 - name: Run Python scripts with repository from GitHub
-  hosts: localhost
+  hosts: all
   tasks:
     - name: Install git
       apt:
