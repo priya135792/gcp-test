@@ -28,7 +28,7 @@
 
     - name: Check if credentials file exists
       stat:
-        path: /var/your-repo/plated-planet-427716-u5-14a35e5f742f.json
+        path: /var/your-repo/plated-planet-427716-u5-9dde551a30eb.json
       register: credentials_file
 
     - name: Fail if credentials file not found
@@ -39,7 +39,7 @@
     - name: Write Google Cloud credentials to file
       copy:
         remote_src: yes
-        src: /var/your-repo/plated-planet-427716-u5-14a35e5f742f.json
+        src: /var/your-repo/plated-planet-427716-u5-9dde551a30eb.json
         dest: /var/service-account-key.json
         mode: '0600'
 
