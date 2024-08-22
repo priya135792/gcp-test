@@ -11,7 +11,7 @@
     - name: Clone the GitHub repository
       git:
         repo: 'https://github.com/priya135792/gcp-test.git'
-        dest: /tmp/your-repo
+        dest: /var/your-repo
         version: 'main'  # or the branch you need
       become: yes
 
@@ -35,26 +35,26 @@
     - name: Write Google Cloud credentials to file
       copy:
         remote_src: yes
-        src: /tmp/your-repo/gcp-test/plated-planet-427716-u5-0ec76f30aad5.json
-        dest: /tmp/service-account-key.json
+        src: /var/your-repo/gcp-test/plated-planet-427716-u5-0ec76f30aad5.json
+        dest: /var/service-account-key.json
         mode: '0600'  # Adjust permissions to secure the file
       become: yes
 
     - name: Set GOOGLE_APPLICATION_CREDENTIALS environment variable
       lineinfile:
         path: /etc/environment
-        line: 'GOOGLE_APPLICATION_CREDENTIALS=/tmp/service-account-key.json'
+        line: 'GOOGLE_APPLICATION_CREDENTIALS=/var/service-account-key.json'
         create: yes
       become: yes
 
     - name: Export GOOGLE_APPLICATION_CREDENTIALS environment variable for current session
       shell: |
-        echo 'export GOOGLE_APPLICATION_CREDENTIALS=/tmp/service-account-key.json' >> ~/.bashrc
+        echo 'export GOOGLE_APPLICATION_CREDENTIALS=/var/service-account-key.json' >> ~/.bashrc
         source ~/.bashrc
       become: yes
 
     - name: Run enable.py
-      command: /tmp/venv/bin/python /tmp/your-repo/gcp-test/enable.py
+      command: /tmp/venv/bin/python /var/your-repo/gcp-test/enable.py
       register: result_script1
 
     - name: Debug output of enable.py
