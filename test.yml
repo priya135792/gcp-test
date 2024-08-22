@@ -11,7 +11,7 @@
     - name: Clone the GitHub repository
       git:
         repo: 'https://github.com/priya135792/gcp-test.git'
-        dest: /var/your-repo
+        dest: /var/your-repo1
         version: 'main'  # or the branch you need
       become: yes
 
@@ -34,7 +34,7 @@
 
     - name: Check if credentials file exists
       stat:
-        path: /var/your-repo/plated-planet-427716-u5-0ec76f30aad5.json
+        path: /var/your-repo1/plated-planet-427716-u5-0ec76f30aad5.json
       register: credentials_file
 
     - name: Fail if credentials file not found
@@ -45,7 +45,7 @@
     - name: Write Google Cloud credentials to file
       copy:
         remote_src: yes
-        src: /var/your-repo/plated-planet-427716-u5-0ec76f30aad5.json
+        src: /var/your-repo1/plated-planet-427716-u5-0ec76f30aad5.json
         dest: /var/service-account-key.json
         mode: '0600'
       become: yes
@@ -58,7 +58,7 @@
       become: yes
 
     - name: Run enable.py
-      command: /tmp/venv/bin/python /var/your-repo/enable.py
+      command: /tmp/venv/bin/python3 /var/your-repo/enable.py
       register: result_script1
       environment:
         GOOGLE_APPLICATION_CREDENTIALS: /var/service-account-key.json
