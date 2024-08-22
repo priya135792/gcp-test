@@ -58,7 +58,10 @@
       become: yes
 
     - name: Reload environment variables
-      shell: source /etc/environment
+      shell: |
+         source /etc/environment
+         export GOOGLE_APPLICATION_CREDENTIALS=/var/service-account-key.json
+      executable: /bin/bash
       become: yes
 
     - name: Run enable.py
